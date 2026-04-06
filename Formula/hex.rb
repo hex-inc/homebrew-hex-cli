@@ -1,25 +1,25 @@
 class Hex < Formula
   desc "Hex CLI"
   homepage "https://hex.tech"
-  version "0.7.0"
+  version "1.0.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v0.7.0/hex-aarch64-apple-darwin.tar.xz"
-      sha256 "031df26e1b533713a73fd718785e2798c9fbfe30807264c156c8bcf7202d5251"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.0.0/hex-aarch64-apple-darwin.tar.xz"
+      sha256 "cd33e9778d073cb0d6366ea6a5fd09472abcc38664921f3c726962c6a5145f97"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v0.7.0/hex-x86_64-apple-darwin.tar.xz"
-      sha256 "2e294b09f51b9ee8a74c33dc7a74a8927975eba0196cab846c424c154a42d262"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.0.0/hex-x86_64-apple-darwin.tar.xz"
+      sha256 "91c5e4398491cb570ad16864d10877ef0387cdb0570f56544a97dfa7284787d9"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v0.7.0/hex-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "5868944ca1f6f4ec17535dee7e05db8ed6b8a17786e212a6974bbeeeaab79104"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.0.0/hex-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "0120fa3366abaceb405cc7c35afd88c7920fb75dff4157ee790b79c20447b167"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v0.7.0/hex-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "f60b644db7b64b797d9e1461e39f14fd1ff000620a536ef2ccf37061f9e46676"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.0.0/hex-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "f1f59a6d9d8aacc23b867337de0d75906c4740b34dda5345d5b8399f4b1ee7bd"
     end
   end
   license "UNLICENSED"
@@ -47,10 +47,22 @@ class Hex < Formula
   end
 
   def install
-    bin.install "hex" if OS.mac? && Hardware::CPU.arm?
-    bin.install "hex" if OS.mac? && Hardware::CPU.intel?
-    bin.install "hex" if OS.linux? && Hardware::CPU.arm?
-    bin.install "hex" if OS.linux? && Hardware::CPU.intel?
+    if OS.mac? && Hardware::CPU.arm?
+      bin.install "hex"
+      generate_completions_from_executable(bin/"hex", "completions")
+    end
+    if OS.mac? && Hardware::CPU.intel?
+      bin.install "hex"
+      generate_completions_from_executable(bin/"hex", "completions")
+    end
+    if OS.linux? && Hardware::CPU.arm?
+      bin.install "hex"
+      generate_completions_from_executable(bin/"hex", "completions")
+    end
+    if OS.linux? && Hardware::CPU.intel?
+      bin.install "hex"
+      generate_completions_from_executable(bin/"hex", "completions")
+    end
 
     install_binary_aliases!
 
