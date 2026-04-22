@@ -1,35 +1,34 @@
 class Hex < Formula
   desc "Hex CLI"
   homepage "https://hex.tech"
-  version "1.1.0"
+  version "1.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.1.0/hex-aarch64-apple-darwin.tar.xz"
-      sha256 "b1867dab54d946244b6920eb3bd1c556d48d530914618a4814769c7cdb7800a4"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2.0/hex-aarch64-apple-darwin.tar.xz"
+      sha256 "fce759b560205dd53a5a8e7ae4e48ff4215bf687b4fcf60a891f4cfb71892722"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.1.0/hex-x86_64-apple-darwin.tar.xz"
-      sha256 "525eb362d836dc1fd91d9f47b654e612a38f639ea348454eac9f9aaab8808b99"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2.0/hex-x86_64-apple-darwin.tar.xz"
+      sha256 "0231770a7f0b0bb3b47d9403cc1f5aa31f9ce3a9a00bc0be18309ae417b36c2b"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.1.0/hex-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "39b0f93e0652d4ba43e9a38b30885b30a92cc8c078ed98097943dd8debf0c0df"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2.0/hex-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "4eff95f23a8e43d54d3ee4eba0d9a498eaef9bea8da1e938c52f1389cee003b7"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.1.0/hex-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "54aec0e392c301973190157bdd0232d57b9c5c3303b386b1f1ab558e06842f14"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2.0/hex-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "84d08580c61a13cf9a41563dac2df22800a872a48cbb55e5b4f8cfe57eb662c9"
     end
   end
-  license "UNLICENSED"
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin":      {},
+    "aarch64-apple-darwin": {},
     "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin":       {},
-    "x86_64-unknown-linux-gnu":  {},
-  }.freeze
+    "x86_64-apple-darwin": {},
+    "x86_64-unknown-linux-gnu": {}
+  }
 
   def target_triple
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -49,19 +48,15 @@ class Hex < Formula
   def install
     if OS.mac? && Hardware::CPU.arm?
       bin.install "hex"
-      generate_completions_from_executable(bin/"hex", "completions")
     end
     if OS.mac? && Hardware::CPU.intel?
       bin.install "hex"
-      generate_completions_from_executable(bin/"hex", "completions")
     end
     if OS.linux? && Hardware::CPU.arm?
       bin.install "hex"
-      generate_completions_from_executable(bin/"hex", "completions")
     end
     if OS.linux? && Hardware::CPU.intel?
       bin.install "hex"
-      generate_completions_from_executable(bin/"hex", "completions")
     end
 
     install_binary_aliases!
