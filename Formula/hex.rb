@@ -23,7 +23,6 @@ class Hex < Formula
     end
   end
   def install
-    binary = Dir["hex-*/hex"].first
-    bin.install binary => "hex"
+    bin.install "hex"
   end
 end
