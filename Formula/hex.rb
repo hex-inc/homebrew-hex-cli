@@ -1,72 +1,29 @@
 class Hex < Formula
   desc "Hex CLI"
   homepage "https://hex.tech"
-  version "1.4.0"
+  version "1.2026.05.29"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.4.0/hex-aarch64-apple-darwin.tar.xz"
-      sha256 "a9a717cca3ac0efd24f780c83b202754b2c0a0a1e2f53266c550f8bc37c20c0d"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.05.29/hex-aarch64-apple-darwin.tar.xz"
+      sha256 "2563e30e6f8a73d193780467faea17af4dc30e0dcd6d10248cd1cff83f33f09c"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.4.0/hex-x86_64-apple-darwin.tar.xz"
-      sha256 "f365f6199db5be194d9ce25154bbf6546c63fdbe64fb2e5ef98c534b2fa7462a"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.05.29/hex-x86_64-apple-darwin.tar.xz"
+      sha256 "805a311c59abcf4e5d8a0d00af4971db226019ff4a172141578cbfd4d2eaeef9"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.4.0/hex-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "b0fa1532dc44af4f8028abf309d985ec073535c939517753fdc3c063b3503a5c"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.05.29/hex-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "0cc3c864d1f440d978273cb6dd5d27a8c5d585fa596aec44dc4c101d15b43486"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.4.0/hex-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "ddbcdd3bfb0973351da08c1d21afcc6b3138b5b7ad4511eca4492279bf42fbe8"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.05.29/hex-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "f9c2afe26b434fd0a64aafd40d2a80968e118a4fd00f7dcb8f9a19ce76b66837"
     end
   end
-
-  BINARY_ALIASES = {
-    "aarch64-apple-darwin": {},
-    "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin": {},
-    "x86_64-unknown-linux-gnu": {}
-  }
-
-  def target_triple
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
-
-    "#{cpu}-#{os}"
-  end
-
-  def install_binary_aliases!
-    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
-      dests.each do |dest|
-        bin.install_symlink bin/source.to_s => dest
-      end
-    end
-  end
-
   def install
-    if OS.mac? && Hardware::CPU.arm?
-      bin.install "hex"
-    end
-    if OS.mac? && Hardware::CPU.intel?
-      bin.install "hex"
-    end
-    if OS.linux? && Hardware::CPU.arm?
-      bin.install "hex"
-    end
-    if OS.linux? && Hardware::CPU.intel?
-      bin.install "hex"
-    end
-
-    install_binary_aliases!
-
-    # Homebrew will automatically install these, so we don't need to do that
-    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
-    leftover_contents = Dir["*"] - doc_files
-
-    # Install any leftover files in pkgshare; these are probably config or
-    # sample files.
-    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+    binary = Dir["hex-*/hex"].first
+    bin.install binary => "hex"
   end
 end
