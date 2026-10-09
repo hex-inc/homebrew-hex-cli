@@ -1,26 +1,26 @@
 class Hex < Formula
   desc "Hex CLI"
   homepage "https://hex.tech"
-  version "1.2026.09.23"
+  version "1.2026.10.09"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.09.23/hex-aarch64-apple-darwin.tar.xz"
-      sha256 "0003bebb7412b65c0bb7ee4febd9576f025f8e631be6e6f8510a4cc4ea4cb59e"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.10.09/hex-aarch64-apple-darwin.tar.xz"
+      sha256 "f8bf314718d107cb9449a694de28507709d7264ea3793861ef1a35cf7106de79"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.09.23/hex-x86_64-apple-darwin.tar.xz"
-      sha256 "a2b579374abe363e75ac13037eebb896b65206ed08294b61d26fa8c9a652f1b6"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.10.09/hex-x86_64-apple-darwin.tar.xz"
+      sha256 "97c7b331f306892620d3d9f5bf47c49c16ec0e2317a17aaba46935efaa04e93a"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.09.23/hex-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "a6083e034c9f43f370a90dc04146b11eb060483d5bba44c358e50a94ce113cc5"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.10.09/hex-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "0541bda58134b534626683796fdb446477692d2acf366b3cc0e7c0ff4375afc5"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.09.23/hex-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "3845656a02f992b6bc50a8467bc18e19f52ce38a29be6b43ed13de5b8a1e34f2"
+      url "https://github.com/hex-inc/hex-cli/releases/download/v1.2026.10.09/hex-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "260144772e1f2665efd80f608b1d4a5b3885f9b915c9c3e86a9d89e47fc6b4f7"
     end
   end
 
